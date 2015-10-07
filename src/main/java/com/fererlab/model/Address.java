@@ -17,8 +17,6 @@ public class Address extends BaseModelID<Integer> {
     private User user;
 
     public Address() {
-        //Class t = Out.class;
-        //generated.Out.car.getDefaultInstance();
     }
 
     public Address(String street, String city, Integer postCode, User user) {
