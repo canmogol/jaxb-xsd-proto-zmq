@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" version="1.0" targetNamespace="http://model.fererlab.com" xmlns:tns="http://model.fererlab.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="address" type="tns:address"/>
+
+    <xs:element name="baseModelID" type="tns:baseModelID"/>
+
+    <xs:element name="car" type="tns:car"/>
+
+    <xs:element name="user" type="tns:user"/>
+
+    <xs:complexType name="address">
+        <xs:complexContent>
+            <xs:extension base="tns:baseModelID">
+                <xs:sequence>
+                    <xs:element name="city" type="xs:string" minOccurs="0"/>
+                    <xs:element name="postCode" type="xs:int" minOccurs="0"/>
+                    <xs:element name="street" type="xs:string" minOccurs="0"/>
+                    <xs:element ref="tns:user" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="baseModelID" abstract="true">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int" minOccurs="0"/>
+            <xs:element name="version" type="xs:long" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="user">
+        <xs:complexContent>
+            <xs:extension base="tns:baseModelID">
+                <xs:sequence>
+                    <xs:element name="addressList" type="tns:address" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="username" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="car">
+        <xs:complexContent>
+            <xs:extension base="tns:baseModelID">
+                <xs:sequence>
+                    <xs:element name="carBrand" type="tns:carBrand" minOccurs="0"/>
+                    <xs:element name="manufactureNumber" type="xs:long" minOccurs="0"/>
+                    <xs:element name="model" type="xs:dateTime" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="carBrand">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VOLVO"/>
+            <xs:enumeration value="SAAB"/>
+            <xs:enumeration value="ABARTH"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+
