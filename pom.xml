@@ -9,6 +9,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.generated.code.path>target/generated-sources/src/main/java</java.generated.code.path>
+        <java.package.name>com.fererlab.model</java.package.name>
+        <java.include.path>com/fererlab/model/*.java</java.include.path>
+        <proto.file.path>src/main/resources/proto</proto.file.path>
+        <proto.file.name>FererlabModels.proto</proto.file.name>
     </properties>
 
     <build>
@@ -58,7 +63,7 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <includes>
-                                <include>com/fererlab/model/*.java</include>
+                                <include>${java.include.path}</include>
                             </includes>
                             <outputDirectory>${basedir}/src/main/resources/xsd</outputDirectory>
                         </configuration>
@@ -100,9 +105,9 @@
                                 <argument>-jar</argument>
                                 <argument>${basedir}/src/main/resources/proto/xsd2thrift-1.0.one-jar.jar</argument>
                                 <argument>--protobuf</argument>
-                                <argument>--package=com.fererlab.model</argument>
+                                <argument>--package=${java.package.name}</argument>
                                 <argument>--nestEnums=false</argument>
-                                <argument>--filename=${basedir}/src/main/resources/proto/out.proto</argument>
+                                <argument>--filename=${basedir}/${proto.file.path}/${proto.file.name}</argument>
                                 <argument>${basedir}/src/main/resources/xsd/schema1.xsd</argument>
                             </arguments>
                         </configuration>
@@ -116,12 +121,12 @@
                 <version>0.1.12-SNAPSHOT</version>
                 <configuration>
                     <protocExecutable>protoc</protocExecutable>
-                    <protoSourceRoot>${project.basedir}/src/main/resources/proto/</protoSourceRoot>
+                    <protoSourceRoot>${project.basedir}/${proto.file.path}/</protoSourceRoot>
                     <languageSpecifications>
                         <LanguageSpecification>
                             <language>JAVA</language>
                             <outputDirectory>
-                                ${project.basedir}/target/generated-sources/src/main/java/
+                                ${project.basedir}/${java.generated.code.path}/
                             </outputDirectory>
                         </LanguageSpecification>
                         <LanguageSpecification>
