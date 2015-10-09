@@ -54,9 +54,9 @@
 
   <xs:simpleType name="carBrand">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="E2_SAAB"/>
       <xs:enumeration value="E3_ABARTH"/>
       <xs:enumeration value="E1_VOLVO"/>
+      <xs:enumeration value="E2_SAAB"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

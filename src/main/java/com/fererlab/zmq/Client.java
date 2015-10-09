@@ -13,7 +13,6 @@ public class Client implements Runnable {
     @Override
     public void run() {
 
-
         // create zmq context
         ZMQ.Context context = ZMQ.context(1);
         System.out.println("1");
@@ -33,6 +32,11 @@ public class Client implements Runnable {
         if (bytes != null && bytes.length > 0) {
             System.out.println("---> #bytes: " + bytes.length);
             System.out.println("---> bytes: " + Arrays.toString(bytes));
+            // 01:00:00:08:08:0c:18:01:20:7b:28:7b
+            // bytes: [8, 12, 24, 1, 32, 123, 40, 123]
+            // 01:00:00:08:     08:0c:18:01:20:7b:28:7b
+            // 01:00:00:08:     8  12 24  1 32 123 40 123
+
             // convert bytes to carPB
             try {
                 FererlabModels.car carPB = FererlabModels.car.parseFrom(bytes);

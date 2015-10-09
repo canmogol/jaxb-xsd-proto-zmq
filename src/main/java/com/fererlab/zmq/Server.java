@@ -31,19 +31,18 @@ public class Server implements Runnable {
         byte[] bytes = modelConverter.convert(car);
 
         // continue until interrupt
-        while (!Thread.currentThread().isInterrupted()) {
-            // wait for next client to send a request
-            byte[] request = responder.recv(0);
-            System.out.println("received #bytes: " + request.length);
+        // wait for next client to send a request
+        byte[] request = responder.recv(0);
+        System.out.println("received #bytes: " + request.length);
 
-            // send OK to client
-            responder.send(bytes);
-            System.out.println("sent #bytes: " + bytes.length);
-        }
+        // send OK to client
+        responder.send(bytes);
+        System.out.println("sent #bytes: " + bytes.length);
 
         // close and terminate
         responder.close();
         context.term();
+
     }
 
 }
