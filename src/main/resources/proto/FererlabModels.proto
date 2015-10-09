@@ -1,0 +1,56 @@
+package com.fererlab.model;
+
+enum carBrand
+{
+	carBrand_E1_VOLVO = 1;
+	carBrand_E2_SAAB = 2;
+	carBrand_E3_ABARTH = 3;
+}
+message UnspecifiedType
+{
+	required string baseObjectType = 1;
+	required bytes object = 2;
+}
+
+message car
+{
+	optional int32 id = 1;
+	optional int64 version = 2;
+	optional carBrand _carBrand = 3;
+	optional int64 manufactureNumber = 4;
+	optional int64 model = 5;
+}
+
+message address
+{
+	optional int32 id = 1;
+	optional int64 version = 2;
+	optional string city = 3;
+	optional int32 postCode = 4;
+	optional string street = 5;
+	optional user _user = 6;
+}
+
+message baseModelID
+{
+	optional int32 id = 1;
+	optional int64 version = 2;
+	optional carBrand _carBrand = 3;
+	optional int64 manufactureNumber = 4;
+	optional int64 model = 5;
+	optional string city = 6;
+	optional int32 postCode = 7;
+	optional string street = 8;
+	optional user _user = 9;
+	repeated address addressList = 10;
+	optional string username = 11;
+}
+
+message user
+{
+	optional int32 id = 1;
+	optional int64 version = 2;
+	repeated address addressList = 3;
+	optional string username = 4;
+}
+
